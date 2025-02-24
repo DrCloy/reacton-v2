@@ -24,6 +24,7 @@ import QuestionModal from './components/question/QuestionModal';
 import PDFMainComponent from './components/PDFMainComponent';
 import PDFSideBar from './components/PDFSideBar';
 import ProfessorError from '@/pages/professor/professorError';
+import ReactionModal from './components/ReactionModal';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -169,6 +170,28 @@ const ProfessorClassroom = () => {
       sseRef.current?.close();
       sseRef.current = null;
       await classroomRepository.closeCourse(courseId);
+      const reactionList = Object.entries(reactionsCount)
+        .map(([type, count]) => ({
+          type: type as Reaction,
+          count,
+        }))
+        .sort((a, b) => b.count - a.count);
+      setModal(
+        <ReactionModal
+          firstReaction={reactionList[0].type}
+          firstReactionCount={reactionList[0].count}
+          secondReaction={reactionList[1].type}
+          secondReactionCount={reactionList[1].count}
+          thirdReaction={reactionList[2].type}
+          thirdReactionCount={reactionList[2].count}
+          onClose={() => {
+            closeModal();
+            setModal(null);
+            navigate('/professor');
+          }}
+        />
+      );
+      openModal();
       navigate('/professor');
     } catch (error) {
       popupError(error);
