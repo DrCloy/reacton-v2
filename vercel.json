@@ -5,9 +5,8 @@
       "destination": "https://api.softeer-reacton.shop/:path*"
     },
     {
-      "source": "/:path*",
-      "destination": "https://softeer-reacton.shop/:path*",
-      "status": 200
+      "source": "/(?!api)(.*)",
+      "destination": "/"
     }
   ]
 }
