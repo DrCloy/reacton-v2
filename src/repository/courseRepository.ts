@@ -173,7 +173,7 @@ class CourseRepository {
       credentials: 'include',
     });
 
-    await throwError(response);
+    // await throwError(response);
 
     if (response.redirected) {
       window.location.href = response.url;
