@@ -192,7 +192,6 @@ const ProfessorClassroom = () => {
         />
       );
       openModal();
-      navigate('/professor');
     } catch (error) {
       popupError(error);
     }
