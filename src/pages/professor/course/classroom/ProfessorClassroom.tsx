@@ -160,7 +160,7 @@ const ProfessorClassroom = () => {
   };
 
   //강의 종료
-  const handleCloseClass = () => {
+  const handleCloseClass = async () => {
     if (!courseId) {
       return;
     }
@@ -168,7 +168,7 @@ const ProfessorClassroom = () => {
     try {
       sseRef.current?.close();
       sseRef.current = null;
-      classroomRepository.closeCourse(courseId);
+      await classroomRepository.closeCourse(courseId);
       navigate('/professor');
     } catch (error) {
       popupError(error);
