@@ -8,24 +8,18 @@ class ClassroomRepository {
   async startCourse(courseId: string): Promise<void> {
     // API: PATCH /professors/courses/{courseId}/start
 
-    const response = await fetch(
-      `${API_URL}/professors/courses/${courseId}/start`,
-      {
-        method: 'PATCH',
-        credentials: 'include',
-      }
-    );
+    const response = await fetch(`/api/professors/courses/${courseId}/start`, {
+      method: 'PATCH',
+      credentials: 'include',
+    });
     await throwError(response);
   }
 
   async enterCourse(accessCode: number): Promise<void> {
-    const response = await fetch(
-      `${API_URL}/students/courses/${accessCode}/in`,
-      {
-        method: 'POST',
-        credentials: 'include',
-      }
-    );
+    const response = await fetch(`/api/students/courses/${accessCode}/in`, {
+      method: 'POST',
+      credentials: 'include',
+    });
     await throwError(response);
     if (response.redirected) {
       window.location.href = response.url;
@@ -35,20 +29,17 @@ class ClassroomRepository {
   async closeCourse(courseId: string): Promise<void> {
     // API: PATCH /professors/courses/{courseId}/close
 
-    const response = await fetch(
-      `${API_URL}/professors/courses/${courseId}/close`,
-      {
-        method: 'PATCH',
-        credentials: 'include',
-      }
-    );
+    const response = await fetch(`/api/professors/courses/${courseId}/close`, {
+      method: 'PATCH',
+      credentials: 'include',
+    });
     await throwError(response);
   }
 
   async checkQuestionByProfessor(questionId: string): Promise<void> {
     // API: POST /professors/questions/check/{questionId}
     const response = await fetch(
-      `${API_URL}/professors/questions/check/${questionId}`,
+      `/api/professors/questions/check/${questionId}`,
       {
         method: 'POST',
         headers: {
@@ -63,7 +54,7 @@ class ClassroomRepository {
   async checkQuestionByStudent(questionId: string): Promise<void> {
     // API: POST /students/questions/check/{questionId}
     const response = await fetch(
-      `${API_URL}/students/questions/check/${questionId}`,
+      `/api/students/questions/check/${questionId}`,
       {
         method: 'POST',
         headers: {
@@ -79,7 +70,7 @@ class ClassroomRepository {
     // API: POST /students/questions/
 
     const requestBody = { content: question };
-    const response = await fetch(`${API_URL}/students/questions`, {
+    const response = await fetch(`/api/students/questions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -100,7 +91,7 @@ class ClassroomRepository {
     // API: POST /students/requests
 
     const requestBody = { content: request };
-    const response = await fetch(`${API_URL}/students/requests`, {
+    const response = await fetch(`/api/students/requests`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -114,7 +105,7 @@ class ClassroomRepository {
   async sendReaction(reaction: Reaction): Promise<void> {
     // API: POST /students/reactions
     const requestBody = { content: reaction };
-    const response = await fetch(`${API_URL}/students/reactions`, {
+    const response = await fetch(`/api/students/reactions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -127,7 +118,7 @@ class ClassroomRepository {
 
   async getQuestions(): Promise<Question[]> {
     // API: GET /students/questions
-    const response = await fetch(`${API_URL}/students/questions`, {
+    const response = await fetch(`/api/students/questions`, {
       method: 'GET',
       credentials: 'include',
     });

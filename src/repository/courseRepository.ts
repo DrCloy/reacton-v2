@@ -85,7 +85,7 @@ class CourseRepository {
       })),
     };
 
-    const response = await fetch(`${API_URL}/professors/courses`, {
+    const response = await fetch(`/api/professors/courses`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ class CourseRepository {
   }> {
     // API: GET /professors/courses/home
 
-    const response = await fetch(`${API_URL}/professors/courses/home`, {
+    const response = await fetch(`/api/professors/courses/home`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -167,13 +167,13 @@ class CourseRepository {
   async getOpenedCourse(): Promise<CourseMeta> {
     // API: GET /professor/courses/active
 
-    const response = await fetch(`${API_URL}/professors/courses/active`, {
+    const response = await fetch(`/api/professors/courses/active`, {
       method: 'GET',
       redirect: 'follow',
       credentials: 'include',
     });
 
-    // await throwError(response);
+    await throwError(response);
 
     if (response.redirected) {
       window.location.href = response.url;
@@ -209,13 +209,10 @@ class CourseRepository {
   async searchCourses(keyword: string): Promise<CourseMeta[]> {
     // API: GET /professors/courses?keyword={keyword}
 
-    const response = await fetch(
-      `${API_URL}/professors/courses?keyword=${keyword}`,
-      {
-        method: 'GET',
-        credentials: 'include',
-      }
-    );
+    const response = await fetch(`/api/professors/courses?keyword=${keyword}`, {
+      method: 'GET',
+      credentials: 'include',
+    });
 
     await throwError(response);
 
@@ -252,7 +249,7 @@ class CourseRepository {
   async getCourseById(courseId: Course['id']): Promise<Course> {
     // API: GET /professors/courses/{courseId}
 
-    const response = await fetch(`${API_URL}/professors/courses/${courseId}`, {
+    const response = await fetch(`/api/professors/courses/${courseId}`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -324,13 +321,10 @@ class CourseRepository {
   async getCourseFileUrl(courseId: Course['id']): Promise<string> {
     // API: GET /professors/courses/{courseId}/file
 
-    const response = await fetch(
-      `${API_URL}/professors/courses/${courseId}/file`,
-      {
-        method: 'GET',
-        credentials: 'include',
-      }
-    );
+    const response = await fetch(`/api/professors/courses/${courseId}/file`, {
+      method: 'GET',
+      credentials: 'include',
+    });
 
     await throwError(response);
 
@@ -344,7 +338,7 @@ class CourseRepository {
     // API: GET /students/courses/${accessCode}/summary
 
     const response = await fetch(
-      `${API_URL}/students/courses/${accessCode}/summary`,
+      `/api/students/courses/${accessCode}/summary`,
       {
         method: 'GET',
         credentials: 'include',
@@ -402,7 +396,7 @@ class CourseRepository {
       })),
     };
 
-    const response = await fetch(`${API_URL}/professors/courses/${course.id}`, {
+    const response = await fetch(`/api/professors/courses/${course.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -421,14 +415,11 @@ class CourseRepository {
     const form = new FormData();
     form.append('file', file);
 
-    const response = await fetch(
-      `${API_URL}/professors/courses/${courseId}/file`,
-      {
-        method: 'POST',
-        body: form,
-        credentials: 'include',
-      }
-    );
+    const response = await fetch(`/api/professors/courses/${courseId}/file`, {
+      method: 'POST',
+      body: form,
+      credentials: 'include',
+    });
 
     await throwError(response);
 
@@ -439,7 +430,7 @@ class CourseRepository {
   async deleteCourse(courseId: Course['id']): Promise<void> {
     // API: DELETE /professors/courses/{courseId}
 
-    const response = await fetch(`${API_URL}/professors/courses/${courseId}`, {
+    const response = await fetch(`/api/professors/courses/${courseId}`, {
       method: 'DELETE',
       credentials: 'include',
     });
