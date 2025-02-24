@@ -2,8 +2,6 @@ import { utcToKst } from './../utils/util';
 import { Question, Reaction } from '@/core/model';
 import { throwError } from './throwError';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 class ClassroomRepository {
   async startCourse(courseId: string): Promise<void> {
     // API: PATCH /professors/courses/{courseId}/start

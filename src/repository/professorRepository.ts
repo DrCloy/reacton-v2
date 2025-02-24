@@ -1,8 +1,6 @@
 import { Professor } from '@/core/model';
 import { throwError } from './throwError';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 class ProfessorRepository {
   private ProfessorCache: Professor | null = null;
 

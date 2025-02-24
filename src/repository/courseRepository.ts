@@ -11,8 +11,6 @@ import {
 } from '@/core/model';
 import { throwError } from './throwError';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 type BackendSchedule = {
   day: '월' | '화' | '수' | '목' | '금' | '토' | '일';
   startTime: string;
