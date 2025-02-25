@@ -25,7 +25,7 @@ const QuestionModal = ({
     usePagination();
 
   useEffect(() => {
-    setPage(initialPage);
+    setPage(Math.max(initialPage, 0));
   }, [initialPage]);
 
   return (
