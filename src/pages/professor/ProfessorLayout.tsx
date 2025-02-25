@@ -7,6 +7,7 @@ const ProfessorLayout = () => {
       style={{
         zoom: scale,
         backgroundColor: 'black',
+        width: '1920px',
         height: `${1080 / scale}px`,
       }}
     >

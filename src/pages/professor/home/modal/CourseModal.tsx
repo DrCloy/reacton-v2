@@ -38,6 +38,8 @@ type CourseError = {
   schedule: string;
 };
 
+const timeRegex = /^(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/;
+
 const makeFullUniversity = (university: string) => {
   if (university === '') {
     return '';
@@ -76,6 +78,9 @@ const checkFormError = (
   }
   courseForm.schedule.forEach((schedule) => {
     if (schedule.day === '') {
+      return true;
+    }
+    if (!timeRegex.test(schedule.start) || !timeRegex.test(schedule.end)) {
       return true;
     }
     if (schedule.start >= schedule.end) {
