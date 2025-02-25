@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router';
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 
 import Home from './pages/home/Home';
 import ProfessorLoading from './pages/professor/loading/ProfessorLoading';
@@ -7,14 +7,32 @@ import ProfessorLayout from './pages/professor/ProfessorLayout';
 import ProfessorHomeLayout from './pages/professor/home/layout/ProfessorHomeLayout';
 import StudentHome from './pages/student/home/StudentHome';
 import Loading from './pages/loading/Loading';
-import ProfessorHome from './pages/professor/home/ProfessorHome';
-import ProfessorSearch from './pages/professor/home/search/ProfessorSearch';
-import ProfessorProfile from './pages/professor/home/profile/ProfessorProfile';
-import ProfessorLogin from './pages/professor/login/ProfessorLogin';
-import ProfessorRegister from './pages/professor/register/ProfessorRegister';
-import ProfessorCourse from './pages/professor/course/ProfessorCourse';
-import ProfessorClassRoom from './pages/professor/course/classroom/ProfessorClassroom';
-import StudentCourse from './pages/student/course/StudentCourse';
+
+const ProfessorHome = lazy(
+  () => import('./pages/professor/home/ProfessorHome')
+);
+const ProfessorSearch = lazy(
+  () => import('./pages/professor/home/search/ProfessorSearch')
+);
+const ProfessorProfile = lazy(
+  () => import('./pages/professor/home/profile/ProfessorProfile')
+);
+const ProfessorLogin = lazy(
+  () => import('./pages/professor/login/ProfessorLogin')
+);
+const ProfessorRegister = lazy(
+  () => import('./pages/professor/register/ProfessorRegister')
+);
+const ProfessorCourse = lazy(
+  () => import('./pages/professor/course/ProfessorCourse')
+);
+const ProfessorClassRoom = lazy(
+  () => import('./pages/professor/course/classroom/ProfessorClassroom')
+);
+
+const StudentCourse = lazy(
+  () => import('./pages/student/course/StudentCourse')
+);
 
 function App() {
   return (
