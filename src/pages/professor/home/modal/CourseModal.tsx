@@ -121,6 +121,10 @@ const CourseModal = ({ course, onSubmit, onClose }: CourseModalProps) => {
   });
 
   const handleSubmit = () => {
+    if (checkFormError(formError, courseForm)) {
+      return false;
+    }
+
     onSubmit({
       ...courseForm,
       id: course?.id || '',
