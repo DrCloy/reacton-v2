@@ -7,7 +7,7 @@ cd $PROJECT_PATH
 # make tempdir
 TEMPDIR=$(mktemp -d)
 git clone https://github.com/DrCloy/reacton-v2.git $TEMPDIR
-rsync -av --exclude='.git' "$PROJECT_PATH"/ "$TEMPDIR"/
+rsync -av --exclude='.git' --exclude-from="$PROJECT_PATH/.gitignore" "$PROJECT_PATH"/ "$TEMPDIR"/
 
 cd $TEMPDIR
 git add .
