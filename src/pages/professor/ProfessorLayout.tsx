@@ -1,8 +1,15 @@
 import { Outlet } from 'react-router';
 
 const ProfessorLayout = () => {
+  const scale = window.screen.width / 1920;
   return (
-    <div style={{ zoom: window.screen.width / 1920, backgroundColor: 'black' }}>
+    <div
+      style={{
+        zoom: scale,
+        backgroundColor: 'black',
+        height: `${100 / scale}vh`,
+      }}
+    >
       <Outlet />
     </div>
   );
