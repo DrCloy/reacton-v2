@@ -4,7 +4,7 @@ import CloseSvg from '@/assets/icons/close.svg?react';
 import PrevIcon from '@/assets/icons/back-vector.svg?react';
 import NextIcon from '@/assets/icons/next-vector.svg?react';
 import { ProfessorQuestion } from '@/core/model';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 type QuestionModalProps = {
   questions: ProfessorQuestion[];
@@ -17,14 +17,27 @@ const QuestionModal = ({
   questions,
   handleResolveClick,
   closeModal,
-  initialPage = 1,
+  initialPage,
 }: QuestionModalProps) => {
   const { setPage, prevPage, nextPage, PaginationDiv, page, totalPages } =
     usePagination();
+  const questionRef = useRef(questions[initialPage || 0].id);
 
   useEffect(() => {
-    setPage(initialPage);
-  }, [initialPage]);
+    if (initialPage) setPage(initialPage);
+  }, []);
+
+  useEffect(() => {
+    if (questions.length === 0) return;
+    const index = questions.findIndex(
+      (question) => question.id === questionRef.current
+    );
+    if (index === -1) {
+      questionRef.current = questions[page].id;
+    } else {
+      setPage(index);
+    }
+  }, [questions]);
 
   return (
     <div className={S.modalContainer} onClick={(e) => e.stopPropagation()}>
@@ -37,7 +50,10 @@ const QuestionModal = ({
         <div className={S.pageController}>
           <button
             className={S.buttonContainer}
-            onClick={prevPage}
+            onClick={() => {
+              questionRef.current = questions[Math.max(page - 1, 0)].id;
+              prevPage();
+            }}
             disabled={page === 0}
           >
             <PrevIcon className={S.icon} />
@@ -49,7 +65,11 @@ const QuestionModal = ({
           </div>
           <button
             className={S.buttonContainer}
-            onClick={nextPage}
+            onClick={() => {
+              questionRef.current =
+                questions[Math.min(page + 1, totalPages - 1)].id;
+              nextPage();
+            }}
             disabled={page >= totalPages - 1}
           >
             <NextIcon className={S.icon} />

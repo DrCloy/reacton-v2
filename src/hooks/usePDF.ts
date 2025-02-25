@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
 import pdfWorker from 'pdfjs-dist/build/pdf.worker?url';
-import pretendardVariable from '@/assets/font/PretendardVariable.woff2';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
 
@@ -75,19 +74,6 @@ const renderPage = async (
   }
 };
 
-const loadFallbackFont = async () => {
-  try {
-    const font = new FontFace(
-      'PretendardVariable',
-      `url(${pretendardVariable})`
-    );
-    await font.load();
-    document.fonts.add(font);
-  } catch (error) {
-    console.error('폰트 로딩 오류:', error);
-  }
-};
-
 function usePDF() {
   const [pdf, setPdf] = useState<pdfjsLib.PDFDocumentProxy | null>(null);
   const [scale, setScale] = useState(1);
@@ -95,10 +81,6 @@ function usePDF() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const renderTaskRef = useRef<pdfjsLib.RenderTask | null>(null);
-
-  useEffect(() => {
-    loadFallbackFont();
-  }, []);
 
   const loadPdf = async (pdfSource: File | string) => {
     try {
