@@ -76,18 +76,23 @@ const checkFormError = (
   if (courseError.schedule) {
     return true;
   }
+
+  let isScheduleError = false;
   courseForm.schedule.forEach((schedule) => {
+    if (isScheduleError) return;
+
     if (schedule.day === '') {
-      return true;
+      isScheduleError = true;
     }
     if (!timeRegex.test(schedule.start) || !timeRegex.test(schedule.end)) {
-      return true;
+      isScheduleError = true;
     }
     if (schedule.start >= schedule.end) {
-      return true;
+      isScheduleError = true;
     }
   });
-  return false;
+
+  return isScheduleError;
 };
 
 const CourseModal = ({ course, onSubmit, onClose }: CourseModalProps) => {

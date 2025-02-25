@@ -1,18 +1,17 @@
+import { useEffect } from 'react';
 import { Outlet } from 'react-router';
 
 const ProfessorLayout = () => {
-  const scale = window.screen.width / 1920;
+  useEffect(() => {
+    document.title = 'Professor';
+    document.body.style.zoom = `${window.screen.width / 1920}`;
+    document.body.style.backgroundColor = 'black';
+  }, []);
+
   return (
-    <div
-      style={{
-        zoom: scale,
-        backgroundColor: 'black',
-        width: '1920px',
-        height: `${1080 / scale}px`,
-      }}
-    >
+    <>
       <Outlet />
-    </div>
+    </>
   );
 };
 
