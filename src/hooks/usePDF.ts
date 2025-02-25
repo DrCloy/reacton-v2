@@ -86,11 +86,15 @@ function usePDF() {
     try {
       let loadingTask;
       if (typeof pdfSource === 'string') {
-        loadingTask = pdfjsLib.getDocument(pdfSource);
+        loadingTask = pdfjsLib.getDocument({
+          url: pdfSource,
+          disableFontFace: true,
+        });
       } else {
         const arrayBuffer = await pdfSource.arrayBuffer();
         loadingTask = pdfjsLib.getDocument({
           data: new Uint8Array(arrayBuffer),
+          disableFontFace: true,
         });
       }
       const pdfDoc = await loadingTask.promise;
