@@ -203,7 +203,14 @@ const ProfessorClassroom = () => {
       questionModalRef.current = '';
       return;
     }
-    questionModalRef.current = questions[page].id || '';
+    if (questions.length === 0) {
+      return;
+    }
+    if (page > questions.length - 1) {
+      questionModalRef.current = questions[questions.length - 1].id;
+      return;
+    }
+    questionModalRef.current = questions[page].id;
   };
 
   // 가장 처음 course 정보 받아오기

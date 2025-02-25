@@ -28,10 +28,12 @@ const PDFSideBar = ({
 }: PDFSideBarProps) => {
   const handleQuestionModalOpen = (page: number) => {
     const handleCloseModal = () => {
-      setCurrentModalQuestion(page);
+      setCurrentModalQuestion(-1);
       closeModal();
       setModal(null);
     };
+
+    setCurrentModalQuestion(page);
 
     setModal(
       <QuestionModal
