@@ -210,7 +210,7 @@ const CourseModal = ({ course, onSubmit, onClose }: CourseModalProps) => {
       }}
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit();
+        return handleSubmit();
       }}
       className={S.courseModal}
     >
