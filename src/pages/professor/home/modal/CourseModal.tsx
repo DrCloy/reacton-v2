@@ -352,7 +352,19 @@ const CourseModal = ({ course, onSubmit, onClose }: CourseModalProps) => {
                 capacity: '숫자만 입력해 주세요',
               }));
             } else {
-              setFormError((prev) => ({ ...prev, capacity: '' }));
+              if (parseInt(courseForm.capacity) < 1) {
+                setFormError((prev) => ({
+                  ...prev,
+                  capacity: '1명 이상 입력해 주세요',
+                }));
+              } else if (parseInt(courseForm.capacity) > 1000) {
+                setFormError((prev) => ({
+                  ...prev,
+                  capacity: '1000명 이하로 입력해 주세요',
+                }));
+              } else {
+                setFormError((prev) => ({ ...prev, capacity: '' }));
+              }
             }
           }}
         />

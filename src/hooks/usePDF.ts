@@ -42,6 +42,7 @@ const renderPage = async (
 
   try {
     const page = await pdf.getPage(currentPage);
+    console.log(page.getTextContent());
     const viewport = getPageViewport(page, scale);
 
     const offscreen = createOffscreenCanvas(viewport.width, viewport.height);
@@ -88,13 +89,11 @@ function usePDF() {
       if (typeof pdfSource === 'string') {
         loadingTask = pdfjsLib.getDocument({
           url: pdfSource,
-          disableFontFace: true,
         });
       } else {
         const arrayBuffer = await pdfSource.arrayBuffer();
         loadingTask = pdfjsLib.getDocument({
           data: new Uint8Array(arrayBuffer),
-          disableFontFace: true,
         });
       }
       const pdfDoc = await loadingTask.promise;
