@@ -78,7 +78,7 @@ const checkFormError = (
     if (schedule.day === '') {
       return true;
     }
-    if (schedule.start > schedule.end) {
+    if (schedule.start >= schedule.end) {
       return true;
     }
   });
