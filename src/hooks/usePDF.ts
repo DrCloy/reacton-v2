@@ -42,7 +42,6 @@ const renderPage = async (
 
   try {
     const page = await pdf.getPage(currentPage);
-    console.log(page.getTextContent());
     const viewport = getPageViewport(page, scale);
 
     const offscreen = createOffscreenCanvas(viewport.width, viewport.height);
