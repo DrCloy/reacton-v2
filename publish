@@ -3,16 +3,14 @@
 PROJECT_PATH=$(cd "$(dirname $0)"; pwd)
 
 cd $PROJECT_PATH
-npm run build
 
 # make tempdir
 TEMPDIR=$(mktemp -d)
-git clone https://github.com/DrCloy/react-on-front.git $TEMPDIR
-cp -r $PROJECT_PATH/dist/* $TEMPDIR/
+git clone https://github.com/DrCloy/reacton-v2.git $TEMPDIR
+rsync -av --exclude='.git' "$PROJECT_PATH"/ "$TEMPDIR"/
+
 cd $TEMPDIR
-cp index.html 404.html
 git add .
 git commit -m "publish $(date +'%Y-%m-%dT%H:%M:%S')"
 git push origin main
 rm -rf $TEMPDIR
-rm -rf $PROJECT_PATH/dist

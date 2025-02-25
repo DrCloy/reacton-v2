@@ -40,6 +40,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<Home />} />
+
         <Route path="professor" element={<ProfessorLayout />}>
           <Route element={<ProfessorHomeLayout />}>
             <Route
