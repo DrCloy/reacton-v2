@@ -23,7 +23,6 @@ const TimeInput = ({ time, setTime }: TimeInputProps) => {
         type="text"
         className={S.timeInput}
         value={localHour}
-        onFocus={() => setTime(`:${localMinute}`)}
         onChange={(e) => {
           const currentHour = e.target.value;
           if (!/^\d*$/.test(currentHour)) {
@@ -50,7 +49,6 @@ const TimeInput = ({ time, setTime }: TimeInputProps) => {
         type="text"
         className={S.timeInput}
         value={localMinute}
-        onFocus={() => setTime(`${localHour}:`)}
         onChange={(e) => {
           const currentMinute = e.target.value;
           if (!/^\d*$/.test(currentMinute)) {
