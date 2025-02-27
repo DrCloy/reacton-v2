@@ -31,6 +31,7 @@ const TimeInput = ({ time, setTime }: TimeInputProps) => {
           setLocalHour(e.target.value);
         }}
         onBlur={(e) => {
+          e.stopPropagation();
           const inputHour = e.target.value;
           if (inputHour === '') {
             setLocalHour('00');
@@ -57,6 +58,7 @@ const TimeInput = ({ time, setTime }: TimeInputProps) => {
           setLocalMinute(e.target.value);
         }}
         onBlur={(e) => {
+          e.stopPropagation();
           const inputMinute = e.target.value;
           if (inputMinute === '') {
             setLocalMinute('00');
