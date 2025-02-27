@@ -18,7 +18,8 @@ type courseActionsProps = {
 const fileSuccessModal = (
   setModal: React.Dispatch<React.SetStateAction<React.ReactNode | null>>,
   openModal: () => void,
-  closeModal: () => void
+  closeModal: () => void,
+  navigate: NavigateFunction
 ) => {
   setModal(
     <AlertModal
@@ -28,10 +29,12 @@ const fileSuccessModal = (
       onClickCloseButton={() => {
         closeModal();
         setModal(null);
+        navigate(0);
       }}
       onClickModalButton={async () => {
         closeModal();
         setModal(null);
+        navigate(0);
       }}
     />
   );
@@ -138,7 +141,7 @@ const courseActions = ({
                 buttonText="새 파일 저장"
                 onClickModalButton={async () => {
                   await courseRepository.uploadCourseFile(course.id, file);
-                  fileSuccessModal(setModal, openModal, closeModal);
+                  fileSuccessModal(setModal, openModal, closeModal, navigate);
                 }}
                 onClickCloseButton={() => {
                   offModal();
@@ -154,7 +157,7 @@ const courseActions = ({
                 buttonText="삭제"
                 onClickModalButton={async () => {
                   await courseRepository.uploadCourseFile(course.id, file);
-                  fileSuccessModal(setModal, openModal, closeModal);
+                  fileSuccessModal(setModal, openModal, closeModal, navigate);
                 }}
                 onClickCloseButton={() => {
                   offModal();
@@ -164,7 +167,7 @@ const courseActions = ({
           }
         } else {
           await courseRepository.uploadCourseFile(course.id, file);
-          fileSuccessModal(setModal, openModal, closeModal);
+          fileSuccessModal(setModal, openModal, closeModal, navigate);
         }
       } catch (error) {
         popupError(error);
