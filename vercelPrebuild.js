@@ -1,7 +1,6 @@
 // vercel-prebuild.js
 import fs from 'fs';
 import path from 'path';
-require('dotenv').config(); // 로컬 개발시 .env 파일에서 환경변수 로드
 
 const apiUrl = process.env.VITE_API_URL;
 if (!apiUrl) {
