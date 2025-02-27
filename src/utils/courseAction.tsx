@@ -23,7 +23,7 @@ const fileSuccessModal = (
   setModal(
     <AlertModal
       type="success"
-      message="파일이 성공적으로 업로드되었습니다."
+      message="파일이 성공적으로 수정되었습니다."
       buttonText="확인"
       onClickCloseButton={() => {
         closeModal();
@@ -154,8 +154,7 @@ const courseActions = ({
                 buttonText="삭제"
                 onClickModalButton={async () => {
                   await courseRepository.uploadCourseFile(course.id, file);
-                  offModal();
-                  setModal(null);
+                  fileSuccessModal(setModal, openModal, closeModal);
                 }}
                 onClickCloseButton={() => {
                   offModal();
