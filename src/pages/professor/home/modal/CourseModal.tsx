@@ -240,11 +240,6 @@ const CourseModal = ({ course, onSubmit, onClose }: CourseModalProps) => {
                 ...prev,
                 name: '강의 이름을 입력해 주세요',
               }));
-            } else if (courseForm.name.length > 35) {
-              setFormError((prev) => ({
-                ...prev,
-                name: '강의 이름은 30자 이하로 입력해 주세요',
-              }));
             } else {
               setFormError((prev) => ({ ...prev, name: '' }));
             }
@@ -338,11 +333,6 @@ const CourseModal = ({ course, onSubmit, onClose }: CourseModalProps) => {
                 ...prev,
                 code: '학수번호를 입력해 주세요',
               }));
-            } else if (courseForm.code.length > 10) {
-              setFormError((prev) => ({
-                ...prev,
-                code: '학수번호는 10자 이하로 입력해 주세요',
-              }));
             } else {
               setFormError((prev) => ({ ...prev, code: '' }));
             }
@@ -393,11 +383,6 @@ const CourseModal = ({ course, onSubmit, onClose }: CourseModalProps) => {
               setFormError((prev) => ({
                 ...prev,
                 university: '대학이름을 입력해 주세요',
-              }));
-            } else if (courseForm.university.length > 20) {
-              setFormError((prev) => ({
-                ...prev,
-                university: '대학이름은 20자 이하로 입력해 주세요',
               }));
             } else {
               setFormError((prev) => ({ ...prev, university: '' }));
