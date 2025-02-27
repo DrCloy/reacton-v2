@@ -1,6 +1,10 @@
 // vercel-prebuild.js
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// 현재 모듈의 디렉터리 경로
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const apiUrl = process.env.VITE_API_URL;
 if (!apiUrl) {
