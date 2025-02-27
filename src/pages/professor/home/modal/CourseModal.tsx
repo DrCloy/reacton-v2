@@ -77,9 +77,8 @@ const checkScheduleError = (schedules: CourseForm['schedule']): boolean => {
 
       if (
         schedule.day === otherSchedule.day &&
-        ((schedule.start >= otherSchedule.start &&
-          schedule.start < otherSchedule.end) ||
-          schedule.end >= otherSchedule.start)
+        schedule.start < otherSchedule.end &&
+        schedule.end > otherSchedule.start
       ) {
         isScheduleError = true;
       }
@@ -112,11 +111,7 @@ const checkFormError = (
     return true;
   }
 
-  if (checkScheduleError(courseForm.schedule)) {
-    return true;
-  }
-
-  return false;
+  return checkScheduleError(courseForm.schedule);
 };
 
 const CourseModal = ({ course, onSubmit, onClose }: CourseModalProps) => {
