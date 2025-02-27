@@ -73,7 +73,7 @@ const checkScheduleError = (schedules: CourseForm['schedule']): boolean => {
     schedules.forEach((otherSchedule, otherIndex) => {
       if (isScheduleError) return;
 
-      if (index > otherIndex) return;
+      if (index >= otherIndex) return;
 
       if (
         schedule.day === otherSchedule.day &&
