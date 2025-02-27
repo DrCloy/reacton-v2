@@ -40,6 +40,12 @@ const ProfessorHomeLayout = () => {
   };
 
   const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.value === keyword) {
+      return;
+    }
+    if (encodeURIComponent(event.target.value) === keyword) {
+      return;
+    }
     setSearch(event.target.value);
   };
 
@@ -56,7 +62,7 @@ const ProfessorHomeLayout = () => {
         if (search.trim() === keyword) {
           return;
         }
-        navigate(`/professor/search/?keyword=${search}`);
+        navigate(`/professor/search/?keyword=${encodeURIComponent(search)}`);
       }
     } else if (event.key === 'Escape') {
       event.currentTarget.blur();
