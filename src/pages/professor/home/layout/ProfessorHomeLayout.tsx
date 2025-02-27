@@ -40,12 +40,6 @@ const ProfessorHomeLayout = () => {
   };
 
   const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.value === keyword) {
-      return;
-    }
-    if (encodeURIComponent(event.target.value) === keyword) {
-      return;
-    }
     setSearch(event.target.value);
   };
 
