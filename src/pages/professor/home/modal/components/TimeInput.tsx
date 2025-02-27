@@ -31,18 +31,19 @@ const TimeInput = ({ time, setTime }: TimeInputProps) => {
           setLocalHour(e.target.value);
         }}
         onBlur={(e) => {
-          e.stopPropagation();
-          const inputHour = e.target.value;
-          if (inputHour === '') {
-            setLocalHour('00');
-            setTime(`00:${localMinute}`);
-          } else if (parseInt(inputHour) > 23) {
-            setTime(`23:${localMinute}`);
-          } else {
-            setTime(
-              `${parseInt(inputHour).toString().padStart(2, '0')}:${localMinute}`
-            );
-          }
+          setTimeout(() => {
+            const inputHour = e.target.value;
+            if (inputHour === '') {
+              setLocalHour('00');
+              setTime(`00:${localMinute}`);
+            } else if (parseInt(inputHour) > 23) {
+              setTime(`23:${localMinute}`);
+            } else {
+              setTime(
+                `${parseInt(inputHour).toString().padStart(2, '0')}:${localMinute}`
+              );
+            }
+          }, 100);
         }}
       />
       <span className={S.timeDivider}>:</span>
@@ -58,18 +59,19 @@ const TimeInput = ({ time, setTime }: TimeInputProps) => {
           setLocalMinute(e.target.value);
         }}
         onBlur={(e) => {
-          e.stopPropagation();
-          const inputMinute = e.target.value;
-          if (inputMinute === '') {
-            setLocalMinute('00');
-            setTime(`${localHour}:00`);
-          } else if (parseInt(inputMinute) > 59) {
-            setTime(`${localHour}:59`);
-          } else {
-            setTime(
-              `${localHour}:${parseInt(inputMinute).toString().padStart(2, '0')}`
-            );
-          }
+          setTimeout(() => {
+            const inputMinute = e.target.value;
+            if (inputMinute === '') {
+              setLocalMinute('00');
+              setTime(`${localHour}:00`);
+            } else if (parseInt(inputMinute) > 59) {
+              setTime(`${localHour}:59`);
+            } else {
+              setTime(
+                `${localHour}:${parseInt(inputMinute).toString().padStart(2, '0')}`
+              );
+            }
+          }, 100);
         }}
       />
     </div>
