@@ -17,27 +17,29 @@ const FileUploadPopupModal = ({
   onClickSaveButton,
 }: FileUploadPopupModalProps) => {
   const [file, setFile] = useState<File | null>(null);
+  const [currentFileName, setCurrentFileName] = useState<string | null>(
+    fileName || null
+  );
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const fileNameRef = useRef<string | null>(fileName || null);
 
   function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const files = event.target.files;
     if (files) {
       validateFile(files[0]);
       setFile(files[0]);
-      fileNameRef.current = files[0].name;
+      setCurrentFileName(files[0].name);
     }
   }
 
   function handleDeleteFile() {
     setFile(null);
+    setCurrentFileName(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
-    if (fileNameRef.current) fileNameRef.current = null;
   }
 
   function checkIsFileChanged() {
     if (!fileName && !file) return false;
-    if (fileName && fileNameRef.current === fileName && !file) return false;
+    if (fileName === currentFileName && !file) return false;
 
     return true;
   }
@@ -56,9 +58,9 @@ const FileUploadPopupModal = ({
           </p>
         </div>
         <div className={S.fileContainer}>
-          {fileNameRef.current && (
+          {currentFileName && (
             <>
-              <span className={S.fileInfo}>{fileNameRef.current} </span>
+              <span className={S.fileInfo}>{currentFileName} </span>
               <button className={S.deleteButton} onClick={handleDeleteFile}>
                 <CloseIcon width="16px" height="16px" color="white" />
               </button>
