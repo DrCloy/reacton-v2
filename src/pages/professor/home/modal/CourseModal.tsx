@@ -79,8 +79,7 @@ const checkScheduleError = (schedules: CourseForm['schedule']): boolean => {
         schedule.day === otherSchedule.day &&
         ((schedule.start >= otherSchedule.start &&
           schedule.start < otherSchedule.end) ||
-          (schedule.end >= otherSchedule.start &&
-            schedule.end <= otherSchedule.end))
+          schedule.end >= otherSchedule.start)
       ) {
         isScheduleError = true;
       }
