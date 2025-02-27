@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://api.softeer-reacton.shop/:path*"
+      "destination": "VITE_API_URL/:path*"
     },
     {
       "source": "/:path((?!api).*)",
